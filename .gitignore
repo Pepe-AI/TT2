@@ -1,0 +1,32 @@
+# Ignorar el entorno virtual
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+*.manifest
+*.spec
+
+# Archivos de macOS
+.DS_Store
+
+# Archivos de editor
+.vscode/
+*.swp
+*~
+*.sublime-workspace
