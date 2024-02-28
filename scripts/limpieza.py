@@ -25,11 +25,11 @@ from imblearn.over_sampling import SMOTE
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import StandardScaler
 from imblearn.under_sampling import RandomUnderSampler
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
+
+
 from sklearn.metrics import confusion_matrix, log_loss
 from sklearn.calibration import CalibratedClassifierCV
-from sklearn.model_selection import cross_val_score
+
 from sklearn.preprocessing import LabelEncoder
 from sklearn.feature_extraction.text import CountVectorizer
 #------------------Sklearn----------------------#
@@ -66,9 +66,7 @@ nlp = spacy.load("en_core_web_lg")
 #------------------NLTK----------------------#
 
 
-#from gensim.models import Word2Vec
-#from tensorflow.keras.models import Sequential
-#from tensorflow.keras.layers import Embedding, LSTM, Dense, Flatten, Concatenate
+
 #def EDA():
 
 # Definimos una función para preprocesar el texto
@@ -203,16 +201,13 @@ data = pd.read_csv('Curriculum Vitae.csv', encoding="utf-8")
 valores_a_eliminar = ['HR','Advocate','Arts','Sales','Mechanical Engineer', 'Health and fitness','Civil Engineer', 'Business Analyst', 'Electrical Engineering', 'Operations Manager', 'PMO',"SAP Developer", "Automation Testing"]
 df = data[~data['Category'].isin(valores_a_eliminar)]
 
+
 df = df.copy()
 df['Resume'] = df['Resume'].apply(preprocess_text)
 
-#print(df.head())
 
 # Dataframe con las palabras más comunes por etiqueta
 word_counts_df = useless_words()
-
-# Visualiza el DataFrame con las palabras más comunes por etiqueta
-
 
 
 
@@ -246,7 +241,7 @@ for category, words_to_remove in words_to_remove.items():
 
 
 # Entrenamiento del modelo Word2Vec
-word2vec_model = Word2Vec(sentences=tokenized_text, vector_size=150, window=5, min_count=1, workers=4)
+word2vec_model = Word2Vec(sentences=tokenized_text, vector_size=100, window=5, min_count=1, workers=4)
 
 # Aplicando la función para obtener embeddings a la columna 'text'
 df['text_embeddings'] = tokenized_text.apply(get_embeddings)
@@ -288,3 +283,11 @@ combined_df = pd.concat([y_res_df, X_df], axis=1)
 
 #crear .csv con datos numericos y datos categoricos
 combined_df.to_csv('ML_curriculum_vitae.csv', index=False)
+
+#promediar los embeddings podria ser una solucion de acuerdo a lo siguiente
+#Para documentos completos como CVs, puedes promediar los vectores de todas 
+#las palabras en el documento para obtener un único vector de características del documento.
+
+#Aplicar PCA para reducir la dimensionalidad
+
+#puede existir un problema al balancear datos ya que solo se deben crear datos en los datos de entrenamiento
