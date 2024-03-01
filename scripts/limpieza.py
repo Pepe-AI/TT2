@@ -249,6 +249,8 @@ df['text_embeddings'] = tokenized_text.apply(get_embeddings)
 
 #obtenemos X xomo los datos de embedings
 X = np.vstack(df['text_embeddings'].to_numpy())
+print("variable X", [sublist[:3] for sublist in X])
+
 
 # Codificación de etiquetas y
 label_encoder = LabelEncoder()
@@ -281,6 +283,8 @@ X_df = pd.DataFrame(X, columns=[f'feature_{i}' for i in range(X.shape[1])])
 # Unir los DataFrames
 combined_df = pd.concat([y_res_df, X_df], axis=1)
 
+
+print(combined_df.head(3))
 #crear .csv con datos numericos y datos categoricos
 combined_df.to_csv('ML_curriculum_vitae.csv', index=False)
 
@@ -290,4 +294,3 @@ combined_df.to_csv('ML_curriculum_vitae.csv', index=False)
 
 #Aplicar PCA para reducir la dimensionalidad
 
-#puede existir un problema al balancear datos ya que solo se deben crear datos en los datos de entrenamiento
