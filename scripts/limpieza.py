@@ -194,27 +194,28 @@ def creation_synthetic_data(X, y):
 
 
 #Cargar dataset
-data = pd.read_csv('Curriculum Vitae.csv', encoding="utf-8")
+data = pd.read_csv('Curriculum Vitae recortado.csv', encoding="utf-8")
 
-
+print("resumen inicial",data['Resume'].shape)
 #eliminar valores
 valores_a_eliminar = ['HR','Advocate','Arts','Sales','Mechanical Engineer', 'Health and fitness','Civil Engineer', 'Business Analyst', 'Electrical Engineering', 'Operations Manager', 'PMO',"SAP Developer", "Automation Testing"]
 df = data[~data['Category'].isin(valores_a_eliminar)]
 
-
+print("resumen antes de preprocess",df['Resume'].shape)
 df = df.copy()
 df['Resume'] = df['Resume'].apply(preprocess_text)
-
+print("resumen despues de preprocess",df['Resume'].shape)
 
 # Dataframe con las palabras más comunes por etiqueta
 word_counts_df = useless_words()
 
 
 
+
 # Tokenización
 tokenized_text = df['Resume'].apply(lambda x: x.split())
 #eliminamos palabras en comun de todas las etiquetas que no aportan nada y puede generar sesgo
-print(tokenized_text)
+
 
 # Definimos las palabras que consideramos que no están relacionadas con cada etiqueta que no aporte, se busca encontrar mas para mejor entrenamiento
 words_to_remove = {
@@ -246,10 +247,12 @@ word2vec_model = Word2Vec(sentences=tokenized_text, vector_size=100, window=5, m
 # Aplicando la función para obtener embeddings a la columna 'text'
 df['text_embeddings'] = tokenized_text.apply(get_embeddings)
 
+# Inicializamos una lista vacía para guardar los resultados de las comparaciones
+
 
 #obtenemos X xomo los datos de embedings
 X = np.vstack(df['text_embeddings'].to_numpy())
-print("variable X", [sublist[:3] for sublist in X])
+
 
 
 # Codificación de etiquetas y
@@ -284,7 +287,7 @@ X_df = pd.DataFrame(X, columns=[f'feature_{i}' for i in range(X.shape[1])])
 combined_df = pd.concat([y_res_df, X_df], axis=1)
 
 
-print(combined_df.head(3))
+
 #crear .csv con datos numericos y datos categoricos
 combined_df.to_csv('ML_curriculum_vitae.csv', index=False)
 
