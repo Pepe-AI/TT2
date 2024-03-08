@@ -79,6 +79,6 @@ model_SVC = SVC(kernel='linear', C=1.0)
 scores = cross_val_score(model_SVC, X, y, cv=5, scoring='accuracy')  # cv=5 indica una validación cruzada de 5 pliegues
 
 # Imprimir los resultados
-#print(f"Scores de precisión de cada iteración: {scores}")
-#print(f"Precisión media: {scores.mean()} con una desviación estándar de {scores.std()}")
+print(f"Scores de precisión de cada iteración: {scores}")
+print(f"Precisión media: {scores.mean()} con una desviación estándar de {scores.std()}")
 

@@ -1,25 +1,44 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
+
 
 #Cargar dataset
-df = pd.read_csv('Curriculum Vitae.csv', encoding="utf-8")
-print(df.shape)
+df = pd.read_csv('job_descriptions.csv', encoding="utf-8")
 
-df.info()
+df = df.drop(['latitude', 'longitude', 'Company Size', 'Job Posting Date', 'Preference', 'Contact Person', 'Contact', 'Job Portal', 'Benefits', 'Company Profile'], axis=1)
 
-#vemos las etiquetas
-valores_unicos = df['Category'].unique()
-print(valores_unicos)
-
-print(df.shape)
-print(df.columns)
-print(df.Category.value_counts())
+# Imprimir el número de columnas
+print("Número de columnas:", len(df.columns))
 
 
-#vemos la distribucion de las clases entre sí
-label_value_counts = df.Category.value_counts()
-print(label_value_counts/label_value_counts.sum())
+# Contar cuántas veces aparece 'México' en la columna 'country'
+conteo_mexico = (df['Country'] == 'Mexico').sum()
 
-plt.title('Distribución de clases')
-label_value_counts.plot.bar()
-plt.show()
+# Imprimir el resultado
+print("Número de veces que aparece México:", conteo_mexico)
+
+
+# Seleccionar la columna
+columna = df["Job Title"]
+# Seleccionar la columna
+columna2 = df["Role"]
+# Contar valores únicos
+jobTitle_valores_unicos = columna.unique().shape[0]
+
+# Imprimir el resultado
+print(f"Número de valores únicos en la columna 'Job Title': {jobTitle_valores_unicos}")
+
+
+# Contar valores únicos
+role_valores_unicos = columna2.unique().shape[0]
+
+# Imprimir el resultado
+print(f"Número de valores únicos en la columna 'Job Title': {role_valores_unicos}")
+
+valores = []
+
+for valor in columna.unique():
+    valores.append(valor)
+
+print(valores)
