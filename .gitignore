@@ -13,6 +13,7 @@ eggs/
 .eggs/
 lib/
 lib64/
+
 parts/
 sdist/
 var/
@@ -30,3 +31,5 @@ var/
 *.swp
 *~
 *.sublime-workspace
+job_descriptions.csv
+archivo_filtrado.csv
