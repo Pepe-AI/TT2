@@ -194,9 +194,10 @@ def creation_synthetic_data(X, y):
 
 
 #Cargar dataset
-data = pd.read_csv('Curriculum Vitae recortado.csv', encoding="utf-8")
+data = pd.read_csv('archivo_filtrado.csv', encoding="utf-8")
 
 print("resumen inicial",data['Resume'].shape)
+
 #eliminar valores
 valores_a_eliminar = ['HR','Advocate','Arts','Sales','Mechanical Engineer', 'Health and fitness','Civil Engineer', 'Business Analyst', 'Electrical Engineering', 'Operations Manager', 'PMO',"SAP Developer", "Automation Testing"]
 df = data[~data['Category'].isin(valores_a_eliminar)]

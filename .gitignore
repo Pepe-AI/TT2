@@ -33,3 +33,6 @@ var/
 *.sublime-workspace
 job_descriptions.csv
 archivo_filtrado.csv
+updated_data_final_cleaned2.csv
+Curriculum Vitae.csv
+updated_data_final_cleaned.csv
