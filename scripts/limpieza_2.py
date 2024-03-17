@@ -69,14 +69,14 @@ nlp = spacy.load("en_core_web_lg")
 
 
 #Cargar dataset
-data = pd.read_csv('archivo_filtrado.csv', encoding="utf-8")
+data = pd.read_csv('updated_data_final_cleaned3.csv', encoding="utf-8")
 
 resumeDataSet = data.copy()
 resumeDataSet['cleaned_resume'] = ''
 
 def visualize_cloud(label, data):
     # Filtrar los resúmenes por la etiqueta 'Web Developer'
-    web_dev_resumes = data[data['Job Title'] == 'Web Developer']['cleaned_Job_Description']
+    web_dev_resumes = data[data['Category'] == 'Testing']['Resume']
 
     # Combinar todos los resúmenes en una única cadena de texto
     combined_resumes = ' '.join(web_dev_resumes)
@@ -117,9 +117,8 @@ def cleanResume(resumeText):
     return resumeText
 
 
-resumeDataSet['cleaned_Job_Description'] = resumeDataSet["Job Description"].map(cleanResume)
-resumeDataSet['cleaned_Responsibilities'] = resumeDataSet["Responsibilities"].map(cleanResume)
-resumeDataSet['cleaned_skills'] = resumeDataSet["skills"].map(cleanResume)
+resumeDataSet['cleaned_Resume'] = resumeDataSet["Resume"].map(cleanResume)
+
 
 #resumeDataSet['cleaned_resume'] = resumeDataSet['cleaned_Job_Description'] + resumeDataSet['cleaned_Responsibilities'] + resumeDataSet['cleaned_skills']
 
@@ -144,12 +143,7 @@ plt.show()
 
 
 
-# Codificación de etiquetas y
-label_encoder = LabelEncoder()
-resumeDataSet['Job Title'] = label_encoder.fit_transform(resumeDataSet['Job Title'])
 
-# Obtener los valores únicos de la variable "Category"
-valores_unicos = resumeDataSet['Job Title'].unique()
 
 
 
