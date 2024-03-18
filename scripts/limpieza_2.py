@@ -97,8 +97,9 @@ def cleanResume(resumeText):
     resumeText = re.sub('#\S+', '', resumeText)  # remove hashtags
     resumeText = re.sub('@\S+', '  ', resumeText)  # remove mentions
     resumeText = re.sub('[%s]' % re.escape("""!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"""), ' ', resumeText)  # remove punctuations
-    resumeText = re.sub(r'[^\x00-\x7f]',r' ', resumeText)
+    resumeText = re.sub(r'[^\x00-\x7f]',r' ', resumeText) # remove non-ascii characters
     resumeText = re.sub('\s+', ' ', resumeText)  # remove extra whitespace
+    
 
     # Eliminar stopwords
     #stopwords = set(stopwords.words('english'))
@@ -116,16 +117,44 @@ def cleanResume(resumeText):
 
     return resumeText
 
+def limpiar_resumen(resumen, categoria):
+    # Convertimos la categoría a minúsculas para asegurar la correspondencia con las claves del diccionario
+    palabras_irrelevantes = diccionarios.get(categoria.lower(), set())
+    palabras_limpias = [palabra for palabra in resumen.split() if palabra not in palabras_irrelevantes]
+    return ' '.join(palabras_limpias)
+
+
 
 resumeDataSet['cleaned_Resume'] = resumeDataSet["Resume"].map(cleanResume)
+
+resumeDataSet['cleaned_Resume'] = resumeDataSet['cleaned_Resume'].str.replace('Â', '')
+resumeDataSet['cleaned_Resume'] = resumeDataSet['cleaned_Resume'].str.replace('â', '')
+
+
 
 
 #resumeDataSet['cleaned_resume'] = resumeDataSet['cleaned_Job_Description'] + resumeDataSet['cleaned_Responsibilities'] + resumeDataSet['cleaned_skills']
 
 
+#despu8es de limpiar los datos, se procede a elimnar las palabras irrelevantes para cada etiqeuta
+
+# Ruta a la carpeta que contiene tus archivos de diccionarios
+carpeta_diccionarios = 'diccionarios'
+
+# Cargar los diccionarios de palabras irrelevantes desde los archivos
+diccionarios = {}
+
+
+for archivo in os.listdir(carpeta_diccionarios):
+    categoria = archivo.split('.')[0]  # Asume que el nombre del archivo es exactamente la categoría
+    with open(os.path.join(carpeta_diccionarios, archivo), 'r', encoding='utf-8') as f:
+        # Crea un conjunto de palabras irrelevantes para cada categoría
+        diccionarios[categoria] = set(f.read().splitlines())
+
+
 # Filtrar los resúmenes por la etiqueta 'Web Developer'
-web_dev_resumes = resumeDataSet[resumeDataSet['Category'] == 'Testing']['Resume']
-print("info",web_dev_resumes.count())
+web_dev_resumes = resumeDataSet[resumeDataSet['Category'] == 'Database']['Resume']
+
 # Combinar todos los resúmenes en una única cadena de texto
 combined_resumes = ' '.join(web_dev_resumes)
 
@@ -140,11 +169,21 @@ plt.show()
 
 
 
+# Aplicar la función de limpieza a cada fila del DataFrame
+resumeDataSet['Resume'] = resumeDataSet.apply(lambda fila: limpiar_resumen(fila['Resume'], fila['Category']), axis=1)
 
 
 
+# Filtrar los resúmenes por la etiqueta 'Web Developer'
+web_dev_resumes = resumeDataSet[resumeDataSet['Category'] == 'Database']['Resume']
 
+# Combinar todos los resúmenes en una única cadena de texto
+combined_resumes = ' '.join(web_dev_resumes)
 
+# Crear y visualizar la nube de palabras
+wordcloud = WordCloud(width=800, height=400, background_color='white').generate(combined_resumes)
 
-
-
+plt.figure(figsize=(15, 10))
+plt.imshow(wordcloud, interpolation='bilinear')
+plt.axis('off')  # No mostrar los ejes para una visualización más limpia
+plt.show()
