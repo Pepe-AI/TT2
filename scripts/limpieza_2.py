@@ -154,7 +154,7 @@ for archivo in os.listdir(carpeta_diccionarios):
 
 
 # Filtrar los resúmenes por la etiqueta 'Web Developer'
-web_dev_resumes = resumeDataSet[resumeDataSet['Category'] == 'Blockchain']['cleaned_Resume']
+web_dev_resumes = resumeDataSet[resumeDataSet['Category'] == 'Data Science']['cleaned_Resume']
 
 # Combinar todos los resúmenes en una única cadena de texto
 combined_resumes = ' '.join(web_dev_resumes)
@@ -171,12 +171,12 @@ plt.show()
 
 
 # Aplicar la función de limpieza a cada fila del DataFrame
-resumeDataSet['cleaned_Resume'] = resumeDataSet.apply(lambda fila: clean_ussles_words(fila['Resume'], fila['Category']), axis=1)
+resumeDataSet['cleaned_Resume'] = resumeDataSet.apply(lambda fila: clean_ussles_words(fila['cleaned_Resume'], fila['Category']), axis=1)
 
 
 
 # Filtrar los resúmenes por la etiqueta 'Web Developer'
-web_dev_resumes = resumeDataSet[resumeDataSet['Category'] == 'Blockchain']['cleaned_Resume']
+web_dev_resumes = resumeDataSet[resumeDataSet['Category'] == 'Data Science']['cleaned_Resume']
 
 # Combinar todos los resúmenes en una única cadena de texto
 combined_resumes = ' '.join(web_dev_resumes)
