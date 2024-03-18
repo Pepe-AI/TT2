@@ -167,7 +167,7 @@ plt.axis('off')  # No mostrar los ejes para una visualización más limpia
 plt.show()
 
 
-
+#asdf
 
 # Aplicar la función de limpieza a cada fila del DataFrame
 resumeDataSet['Resume'] = resumeDataSet.apply(lambda fila: limpiar_resumen(fila['Resume'], fila['Category']), axis=1)
