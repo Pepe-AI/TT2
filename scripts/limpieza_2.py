@@ -117,7 +117,7 @@ def cleanResume(resumeText):
 
     return resumeText
 
-def limpiar_resumen(resumen, categoria):
+def clean_ussles_words(resumen, categoria):
     # Convertimos la categoría a minúsculas para asegurar la correspondencia con las claves del diccionario
     palabras_irrelevantes = diccionarios.get(categoria, set())
     palabras_limpias = [palabra for palabra in resumen.split() if palabra not in palabras_irrelevantes]
@@ -154,7 +154,7 @@ for archivo in os.listdir(carpeta_diccionarios):
 
 
 # Filtrar los resúmenes por la etiqueta 'Web Developer'
-web_dev_resumes = resumeDataSet[resumeDataSet['Category'] == 'Database']['Resume']
+web_dev_resumes = resumeDataSet[resumeDataSet['Category'] == 'Blockchain']['cleaned_Resume']
 
 # Combinar todos los resúmenes en una única cadena de texto
 combined_resumes = ' '.join(web_dev_resumes)
@@ -171,12 +171,12 @@ plt.show()
 
 
 # Aplicar la función de limpieza a cada fila del DataFrame
-resumeDataSet['Resume'] = resumeDataSet.apply(lambda fila: limpiar_resumen(fila['Resume'], fila['Category']), axis=1)
+resumeDataSet['cleaned_Resume'] = resumeDataSet.apply(lambda fila: clean_ussles_words(fila['Resume'], fila['Category']), axis=1)
 
 
 
 # Filtrar los resúmenes por la etiqueta 'Web Developer'
-web_dev_resumes = resumeDataSet[resumeDataSet['Category'] == 'Database']['Resume']
+web_dev_resumes = resumeDataSet[resumeDataSet['Category'] == 'Blockchain']['cleaned_Resume']
 
 # Combinar todos los resúmenes en una única cadena de texto
 combined_resumes = ' '.join(web_dev_resumes)
