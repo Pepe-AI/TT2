@@ -119,7 +119,7 @@ def cleanResume(resumeText):
 
 def limpiar_resumen(resumen, categoria):
     # Convertimos la categoría a minúsculas para asegurar la correspondencia con las claves del diccionario
-    palabras_irrelevantes = diccionarios.get(categoria.lower(), set())
+    palabras_irrelevantes = diccionarios.get(categoria, set())
     palabras_limpias = [palabra for palabra in resumen.split() if palabra not in palabras_irrelevantes]
     return ' '.join(palabras_limpias)
 
@@ -149,7 +149,8 @@ for archivo in os.listdir(carpeta_diccionarios):
     categoria = archivo.split('.')[0]  # Asume que el nombre del archivo es exactamente la categoría
     with open(os.path.join(carpeta_diccionarios, archivo), 'r', encoding='utf-8') as f:
         # Crea un conjunto de palabras irrelevantes para cada categoría
-        diccionarios[categoria] = set(f.read().splitlines())
+         # Elimina las comas de cada palabra antes de agregarlas al conjunto
+         diccionarios[categoria] = set(palabra.strip().rstrip(',') for palabra in f.read().splitlines())
 
 
 # Filtrar los resúmenes por la etiqueta 'Web Developer'
@@ -167,7 +168,7 @@ plt.axis('off')  # No mostrar los ejes para una visualización más limpia
 plt.show()
 
 
-#asdf
+
 
 # Aplicar la función de limpieza a cada fila del DataFrame
 resumeDataSet['Resume'] = resumeDataSet.apply(lambda fila: limpiar_resumen(fila['Resume'], fila['Category']), axis=1)
