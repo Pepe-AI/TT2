@@ -39,4 +39,5 @@ months,
 monthsCompany,
 Details,
 Pvt,
-Ltd
+Ltd,
+Skill
