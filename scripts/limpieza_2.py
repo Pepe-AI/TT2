@@ -154,7 +154,7 @@ for archivo in os.listdir(carpeta_diccionarios):
 
 
 # Filtrar los resúmenes por la etiqueta 'Web Developer'
-web_dev_resumes = resumeDataSet[resumeDataSet['Category'] == 'DotNet Developer']['cleaned_Resume']
+web_dev_resumes = resumeDataSet[resumeDataSet['Category'] == 'Web Developer']['cleaned_Resume']
 
 # Combinar todos los resúmenes en una única cadena de texto
 combined_resumes = ' '.join(web_dev_resumes)
@@ -176,7 +176,7 @@ resumeDataSet['cleaned_Resume'] = resumeDataSet.apply(lambda fila: clean_ussles_
 
 
 # Filtrar los resúmenes por la etiqueta 'Web Developer'
-web_dev_resumes = resumeDataSet[resumeDataSet['Category'] == 'DotNet Developer']['cleaned_Resume']
+web_dev_resumes = resumeDataSet[resumeDataSet['Category'] == 'Web Developer']['cleaned_Resume']
 
 # Combinar todos los resúmenes en una única cadena de texto
 combined_resumes = ' '.join(web_dev_resumes)
