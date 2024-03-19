@@ -188,3 +188,6 @@ plt.figure(figsize=(15, 10))
 plt.imshow(wordcloud, interpolation='bilinear')
 plt.axis('off')  # No mostrar los ejes para una visualización más limpia
 plt.show()
+
+
+resumeDataSet.to_csv("Datase_ML.csv", index=False)
