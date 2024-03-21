@@ -69,10 +69,10 @@ nlp = spacy.load("en_core_web_lg")
 
 
 #Cargar dataset
-data = pd.read_csv('C:/Git/TT2/scripts/updated_data_final_cleaned3.csv', encoding="utf-8")
+data = pd.read_csv('updated_data_final_cleaned3.csv', encoding="utf-8")
 
 resumeDataSet = data.copy()
-resumeDataSet['cleaned_resume'] = ''
+
 
 def visualize_cloud(label, data):
     # Filtrar los resúmenes por la etiqueta 'Web Developer'
@@ -195,7 +195,7 @@ skills_dict = {
     'Data Science': 'Python, R, Machine Learning, Deep Learning, Statistical Analysis, pandas, NumPy, Data Visualization, Matplotlib, Seaborn, SQL, NoSQL, Spark, Hadoop, PySpark, Ensemble Models, PCA, t-SNE, Airflow, Keras, TensorFlow, Time Series, Predictive Analysis, A/B Testing',
     'Database': 'SQL, PL/SQL, Database Administration, MySQL, PostgreSQL, Oracle, MongoDB, Cassandra, Database Design, Normalization, Data Recovery, Query Optimization, Distributed Databases, Database Tuning, Replication, Sharding, Cluster Management, ETL, Data Warehousing, Real-time DB, Redis, Database Security, Compliance',
     'DevOps Engineer': 'CI/CD, Jenkins, GitLab CI, Docker, Kubernetes, Ansible, Terraform, Monitoring, Logging, Prometheus, Grafana, ELK, Unix Administration, Bash, Python, CloudFormation, Spinnaker, Secrets Management, Ruby, Perl, Vagrant',
-    'Dotnet Developer': 'C#, .NET Framework, ASP.NET MVC, Entity Framework, LINQ, Azure, WPF, Windows Forms, RESTful APIs, .NET Core, Microservices, SignalR, RabbitMQ, CI/CD, TeamCity, Xamarin, Stress Testing',
+    'DotNet Developer': 'C#, .NET Framework, ASP.NET MVC, Entity Framework, LINQ, Azure, WPF, Windows Forms, RESTful APIs, .NET Core, Microservices, SignalR, RabbitMQ, CI/CD, TeamCity, Xamarin, Stress Testing',
     'Java Developer': 'Java, Spring Framework, Spring Boot, Hibernate, JPA, Maven, Gradle, SOAP, REST, JUnit, Design Patterns, Jersey, Netflix OSS, Spring Security, Android Development, SQL, NoSQL Integration, JVM Optimization',
     'Network Security Engineer': 'Firewalls, VPNs, IDS/IPS, SSL/TLS, SSH, Vulnerability Assessment, Pentesting, Intrusion Detection, ISO 27001, NIST, Cryptography, SIEMs, Digital Forensics, Firewall Configuration, Network Security Policies, DLP, CISSP, CISM',
     'Python Developer': 'Python, Django, Flask, Scripting, Data Analysis, Pandas, NumPy, Web Scraping, BeautifulSoup, Scrapy, API Development, FastAPI, Django REST, pytest, unittest, Pyramid, Bottle, asyncio, ORM, SQLAlchemy, Packaging, Kafka, RabbitMQ',
@@ -203,7 +203,25 @@ skills_dict = {
     'Web Designing': 'HTML, CSS, JavaScript, Responsive Design, UX, UI, Bootstrap, Foundation, Graphic Design, Photoshop, Illustrator, Logo Design, Prototyping, Accessibility, SEO, WordPress, Git, Web Animation, Debugging, Performance Optimization, Web Security'
 }
 
-resumeDataSet.head()
+# Función para encontrar las habilidades comunes
+def find_common_skills(category):
+    skills = []
+    for key, value in skills_dict.items():
+        if key == category:
+            skills = value.split(', ')
+            break
+    return skills
+
+# Agregar la columna de habilidades comunes
+resumeDataSet['Common Skills'] = resumeDataSet['Category'].apply(find_common_skills)
+
+resumeDataSet["Common Skills"] = [
+    [palabra.lower() for palabra in lista] for lista in resumeDataSet["Common Skills"]
+]
+
+resumeDataSet["Common Skills"] = resumeDataSet["Common Skills"].str.join(" ")
+
+print(resumeDataSet["Common Skills"])
 
 resumeDataSet.to_csv("Datase_ML.csv", index=False)
 
