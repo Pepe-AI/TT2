@@ -99,7 +99,7 @@ def cleanResume(resumeText):
     resumeText = re.sub('[%s]' % re.escape("""!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"""), ' ', resumeText)  # remove punctuations
     resumeText = re.sub(r'[^\x00-\x7f]',r' ', resumeText) # remove non-ascii characters
     resumeText = re.sub('\s+', ' ', resumeText)  # remove extra whitespace
-    
+    resumeText = resumeText.lower()
 
     # Eliminar stopwords
     #stopwords = set(stopwords.words('english'))
@@ -154,7 +154,7 @@ for archivo in os.listdir(carpeta_diccionarios):
 
 
 # Filtrar los resúmenes por la etiqueta 'Web Developer'
-web_dev_resumes = resumeDataSet[resumeDataSet['Category'] == 'Web Developer']['cleaned_Resume']
+web_dev_resumes = resumeDataSet[resumeDataSet['Category'] == 'Web Designing']['cleaned_Resume']
 
 # Combinar todos los resúmenes en una única cadena de texto
 combined_resumes = ' '.join(web_dev_resumes)
@@ -176,7 +176,7 @@ resumeDataSet['cleaned_Resume'] = resumeDataSet.apply(lambda fila: clean_ussles_
 
 
 # Filtrar los resúmenes por la etiqueta 'Web Developer'
-web_dev_resumes = resumeDataSet[resumeDataSet['Category'] == 'Web Developer']['cleaned_Resume']
+web_dev_resumes = resumeDataSet[resumeDataSet['Category'] == 'Web Designing']['cleaned_Resume']
 
 # Combinar todos los resúmenes en una única cadena de texto
 combined_resumes = ' '.join(web_dev_resumes)
@@ -190,4 +190,21 @@ plt.axis('off')  # No mostrar los ejes para una visualización más limpia
 plt.show()
 
 
+skills_dict = {
+    'Blockchain': 'Ethereum Smart Contracts, Cryptography, Solidity, DApp Development, Hyperledger Fabric, Consensus Algorithms, Node.js, Corda, Blockchain System Design, Truffle, Ganache, Blockchain API, Ripple, Litecoin, Bitcoin, Blockchain Security, Key Management, DeFi, NFTs',
+    'Data Science': 'Python, R, Machine Learning, Deep Learning, Statistical Analysis, pandas, NumPy, Data Visualization, Matplotlib, Seaborn, SQL, NoSQL, Spark, Hadoop, PySpark, Ensemble Models, PCA, t-SNE, Airflow, Keras, TensorFlow, Time Series, Predictive Analysis, A/B Testing',
+    'Database': 'SQL, PL/SQL, Database Administration, MySQL, PostgreSQL, Oracle, MongoDB, Cassandra, Database Design, Normalization, Data Recovery, Query Optimization, Distributed Databases, Database Tuning, Replication, Sharding, Cluster Management, ETL, Data Warehousing, Real-time DB, Redis, Database Security, Compliance',
+    'DevOps Engineer': 'CI/CD, Jenkins, GitLab CI, Docker, Kubernetes, Ansible, Terraform, Monitoring, Logging, Prometheus, Grafana, ELK, Unix Administration, Bash, Python, CloudFormation, Spinnaker, Secrets Management, Ruby, Perl, Vagrant',
+    'Dotnet Developer': 'C#, .NET Framework, ASP.NET MVC, Entity Framework, LINQ, Azure, WPF, Windows Forms, RESTful APIs, .NET Core, Microservices, SignalR, RabbitMQ, CI/CD, TeamCity, Xamarin, Stress Testing',
+    'Java Developer': 'Java, Spring Framework, Spring Boot, Hibernate, JPA, Maven, Gradle, SOAP, REST, JUnit, Design Patterns, Jersey, Netflix OSS, Spring Security, Android Development, SQL, NoSQL Integration, JVM Optimization',
+    'Network Security Engineer': 'Firewalls, VPNs, IDS/IPS, SSL/TLS, SSH, Vulnerability Assessment, Pentesting, Intrusion Detection, ISO 27001, NIST, Cryptography, SIEMs, Digital Forensics, Firewall Configuration, Network Security Policies, DLP, CISSP, CISM',
+    'Python Developer': 'Python, Django, Flask, Scripting, Data Analysis, Pandas, NumPy, Web Scraping, BeautifulSoup, Scrapy, API Development, FastAPI, Django REST, pytest, unittest, Pyramid, Bottle, asyncio, ORM, SQLAlchemy, Packaging, Kafka, RabbitMQ',
+    'Testing': 'HTML, CSS, JavaScript, UX, UI, Frameworks, Graphic Design, Photoshop, Illustrator, Logo Design, Prototyping, Accessibility, SEO, Management, Test Animation, Optimization, Security, Responsive Design',
+    'Web Designing': 'HTML, CSS, JavaScript, Responsive Design, UX, UI, Bootstrap, Foundation, Graphic Design, Photoshop, Illustrator, Logo Design, Prototyping, Accessibility, SEO, WordPress, Git, Web Animation, Debugging, Performance Optimization, Web Security'
+}
+
+
+
 resumeDataSet.to_csv("Datase_ML.csv", index=False)
+
+
