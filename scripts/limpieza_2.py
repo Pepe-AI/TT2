@@ -69,7 +69,7 @@ nlp = spacy.load("en_core_web_lg")
 
 
 #Cargar dataset
-data = pd.read_csv('updated_data_final_cleaned3.csv', encoding="utf-8")
+data = pd.read_csv('C:/Git/TT2/scripts/updated_data_final_cleaned3.csv', encoding="utf-8")
 
 resumeDataSet = data.copy()
 resumeDataSet['cleaned_resume'] = ''
@@ -203,7 +203,7 @@ skills_dict = {
     'Web Designing': 'HTML, CSS, JavaScript, Responsive Design, UX, UI, Bootstrap, Foundation, Graphic Design, Photoshop, Illustrator, Logo Design, Prototyping, Accessibility, SEO, WordPress, Git, Web Animation, Debugging, Performance Optimization, Web Security'
 }
 
-
+resumeDataSet.head()
 
 resumeDataSet.to_csv("Datase_ML.csv", index=False)
 
