@@ -69,14 +69,14 @@ nlp = spacy.load("en_core_web_lg")
 
 
 #Cargar dataset
-data = pd.read_csv('updated_data_final_cleaned3.csv', encoding="utf-8")
+data = pd.read_csv('Datase_ML.csv', encoding="utf-8") #amtes updated_data_final_cleaned3
 
 resumeDataSet = data.copy()
 
 
 def visualize_cloud(label, data):
     # Filtrar los resúmenes por la etiqueta 'Web Developer'
-    web_dev_resumes = data[data['Category'] == 'Testing']['Resume']
+    web_dev_resumes = data[data['Category'] == 'Testing']['cleaned_Resume']
 
     # Combinar todos los resúmenes en una única cadena de texto
     combined_resumes = ' '.join(web_dev_resumes)
@@ -125,10 +125,10 @@ def clean_ussles_words(resumen, categoria):
 
 
 
-resumeDataSet['cleaned_Resume'] = resumeDataSet["Resume"].map(cleanResume)
+#resumeDataSet['cleaned_Resume'] = resumeDataSet["Resume"].map(cleanResume)
 
-resumeDataSet['cleaned_Resume'] = resumeDataSet['cleaned_Resume'].str.replace('Â', '')
-resumeDataSet['cleaned_Resume'] = resumeDataSet['cleaned_Resume'].str.replace('â', '')
+#resumeDataSet['cleaned_Resume'] = resumeDataSet['cleaned_Resume'].str.replace('Â', '')
+#resumeDataSet['cleaned_Resume'] = resumeDataSet['cleaned_Resume'].str.replace('â', '')
 
 
 
@@ -154,7 +154,7 @@ for archivo in os.listdir(carpeta_diccionarios):
 
 
 # Filtrar los resúmenes por la etiqueta 'Web Developer'
-web_dev_resumes = resumeDataSet[resumeDataSet['Category'] == 'Web Designing']['cleaned_Resume']
+web_dev_resumes = resumeDataSet[resumeDataSet['Category'] == 'Database']['cleaned_Resume']
 
 # Combinar todos los resúmenes en una única cadena de texto
 combined_resumes = ' '.join(web_dev_resumes)
@@ -175,11 +175,11 @@ resumeDataSet['cleaned_Resume'] = resumeDataSet.apply(lambda fila: clean_ussles_
 
 
 
-# Filtrar los resúmenes por la etiqueta 'Web Developer'
-web_dev_resumes = resumeDataSet[resumeDataSet['Category'] == 'Web Designing']['cleaned_Resume']
+# Filtrar los resúmenes por la etiqueta 'X'
+all_resumes = resumeDataSet[resumeDataSet['Category'] == 'Database']['cleaned_Resume']
 
 # Combinar todos los resúmenes en una única cadena de texto
-combined_resumes = ' '.join(web_dev_resumes)
+combined_resumes = ' '.join(all_resumes)
 
 # Crear y visualizar la nube de palabras
 wordcloud = WordCloud(width=800, height=400, background_color='white').generate(combined_resumes)
@@ -223,6 +223,6 @@ resumeDataSet["Common Skills"] = resumeDataSet["Common Skills"].str.join(" ")
 
 print(resumeDataSet["Common Skills"])
 
-resumeDataSet.to_csv("Datase_ML.csv", index=False)
+resumeDataSet.to_csv("Datase_ML2.csv", index=False)
 
 
