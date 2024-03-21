@@ -69,10 +69,10 @@ nlp = spacy.load("en_core_web_lg")
 
 
 #Cargar dataset
-data = pd.read_csv('C:/Git/TT2/scripts/updated_data_final_cleaned3.csv', encoding="utf-8")
+data = pd.read_csv('updated_data_final_cleaned3.csv', encoding="utf-8")
 
 resumeDataSet = data.copy()
-resumeDataSet['cleaned_resume'] = ''
+
 
 def visualize_cloud(label, data):
     # Filtrar los resúmenes por la etiqueta 'Web Developer'
@@ -203,7 +203,25 @@ skills_dict = {
     'Web Designing': 'HTML, CSS, JavaScript, Responsive Design, UX, UI, Bootstrap, Foundation, Graphic Design, Photoshop, Illustrator, Logo Design, Prototyping, Accessibility, SEO, WordPress, Git, Web Animation, Debugging, Performance Optimization, Web Security'
 }
 
-resumeDataSet.head()
+# Función para encontrar las habilidades comunes
+def find_common_skills(category):
+    skills = []
+    for key, value in skills_dict.items():
+        if key == category:
+            skills = value.split(', ')
+            break
+    return skills
+
+# Agregar la columna de habilidades comunes
+resumeDataSet['Common Skills'] = resumeDataSet['Category'].apply(find_common_skills)
+
+resumeDataSet["Common Skills"] = [
+    [palabra.lower() for palabra in lista] for lista in resumeDataSet["Common Skills"]
+]
+
+resumeDataSet["Common Skills"] = resumeDataSet["Common Skills"].str.join(" ")
+
+print(resumeDataSet["Common Skills"])
 
 resumeDataSet.to_csv("Datase_ML.csv", index=False)
 
