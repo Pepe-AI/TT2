@@ -91,4 +91,7 @@ years,
 monthsCompany,
 Details,
 nagpur,
-Maharashtra
+Maharashtra,
+responsibility,
+size,
+position,

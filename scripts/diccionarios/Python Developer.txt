@@ -59,7 +59,7 @@ provide,
 experience
 issue,
  user,
-work ,
+work,
 HTML,
 HTML5,
 css,
@@ -67,3 +67,26 @@ CSS,
 CSS3,
 web,
 Web,
+resource
+assist
+organization
+management
+customer
+project
+business
+environment
+worked
+involved
+lead
+years
+solution
+issues
+clients
+documentation
+present
+operated
+including
+responsible
+maintained
+created
+designed 

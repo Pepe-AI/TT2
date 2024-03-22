@@ -1,5 +1,6 @@
 detail,
 Exprience,
+exprience,
 month,
 system,
 company,
@@ -54,3 +55,28 @@ Industries,
 s
 winding,
 core,
+education
+details
+company
+maharashtra
+pune
+january
+experience
+months
+state
+ssc
+pvt
+duration
+name
+aim
+positive 
+attitude
+time attendance
+former
+check
+coil
+assembly
+contact
+resistance
+monthscompany
+exprience

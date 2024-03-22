@@ -125,10 +125,10 @@ def clean_ussles_words(resumen, categoria):
 
 
 
-#resumeDataSet['cleaned_Resume'] = resumeDataSet["Resume"].map(cleanResume)
+resumeDataSet['cleaned_Resume'] = resumeDataSet["Resume"].map(cleanResume)
 
-#resumeDataSet['cleaned_Resume'] = resumeDataSet['cleaned_Resume'].str.replace('Â', '')
-#resumeDataSet['cleaned_Resume'] = resumeDataSet['cleaned_Resume'].str.replace('â', '')
+resumeDataSet['cleaned_Resume'] = resumeDataSet['cleaned_Resume'].str.replace('Â', '')
+resumeDataSet['cleaned_Resume'] = resumeDataSet['cleaned_Resume'].str.replace('â', '')
 
 
 
@@ -153,22 +153,6 @@ for archivo in os.listdir(carpeta_diccionarios):
          diccionarios[categoria] = set(palabra.strip().rstrip(',') for palabra in f.read().splitlines())
 
 
-# Filtrar los resúmenes por la etiqueta 'Web Developer'
-web_dev_resumes = resumeDataSet[resumeDataSet['Category'] == 'Database']['cleaned_Resume']
-
-# Combinar todos los resúmenes en una única cadena de texto
-combined_resumes = ' '.join(web_dev_resumes)
-
-# Crear y visualizar la nube de palabras
-wordcloud = WordCloud(width=800, height=400, background_color='white').generate(combined_resumes)
-
-plt.figure(figsize=(15, 10))
-plt.imshow(wordcloud, interpolation='bilinear')
-plt.axis('off')  # No mostrar los ejes para una visualización más limpia
-plt.show()
-
-
-
 
 # Aplicar la función de limpieza a cada fila del DataFrame
 resumeDataSet['cleaned_Resume'] = resumeDataSet.apply(lambda fila: clean_ussles_words(fila['cleaned_Resume'], fila['Category']), axis=1)
@@ -176,7 +160,7 @@ resumeDataSet['cleaned_Resume'] = resumeDataSet.apply(lambda fila: clean_ussles_
 
 
 # Filtrar los resúmenes por la etiqueta 'X'
-all_resumes = resumeDataSet[resumeDataSet['Category'] == 'Database']['cleaned_Resume']
+all_resumes = resumeDataSet[resumeDataSet['Category'] == 'Testing']['cleaned_Resume']
 
 # Combinar todos los resúmenes en una única cadena de texto
 combined_resumes = ' '.join(all_resumes)
@@ -223,6 +207,11 @@ resumeDataSet["Common Skills"] = resumeDataSet["Common Skills"].str.join(" ")
 
 print(resumeDataSet["Common Skills"])
 
-resumeDataSet.to_csv("Datase_ML2.csv", index=False)
+
+#eliminar valores
+valores_a_eliminar = ["Java Developer","Python Developer"]
+resumeDataSet = resumeDataSet[~resumeDataSet['Category'].isin(valores_a_eliminar)]
+
+#resumeDataSet.to_csv("Datase_ML2.csv", index=False)
 
 
