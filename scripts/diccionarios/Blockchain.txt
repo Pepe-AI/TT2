@@ -52,8 +52,12 @@ front
 end,
 Nashik, 
 Ranchi,
+b,
+e,
+fabric,
 Jharkhand,
 Maharashtra,
+diploma,
 exprience
 month
 monthscompany
