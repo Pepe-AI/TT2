@@ -13,7 +13,8 @@ Madhya Pradesh,
 Solutions Pvt,
 Operating System,
 Year,
-Intelligence Platform,
+Intelligence
+Platform,
 Exprience,
 January,
 Industry,
@@ -34,7 +35,8 @@ Key Responsibilities,
 Expertence,
 Learning,
 Environment,
-Elastic search,
+Elastic
+search,
 a SAP,
 carried,
 Pvt Ltd,
@@ -62,3 +64,34 @@ ability,
 user,
 queries,
 years,
+le,
+month
+exprience
+skill
+monthscompany
+education
+detail
+pvt
+ltd
+school
+engineering
+college
+maharashtra
+bhopal
+madhya
+pradesh
+responsibility
+key
+technical
+environment
+technology
+industry
+company
+january
+wipro
+aegis
+end
+consultant
+service area
+using
+experience
