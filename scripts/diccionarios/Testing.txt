@@ -1,5 +1,6 @@
 detail,
 Exprience,
+exprience,
 month,
 system,
 company,
@@ -17,6 +18,9 @@ Details,
 engineer,
 Skill,
 University,
+ltd,
+le,
+year,
 PROJECT,
 representative,
 SKILLS,
@@ -54,3 +58,29 @@ Industries,
 s
 winding,
 core,
+education
+details
+company
+maharashtra
+pune
+january
+experience
+months
+state
+ssc
+pvt
+duration
+name
+aim
+positive 
+attitude
+time attendance
+former
+check
+coil
+assembly
+contact
+resistance
+monthscompany
+exprience
+m

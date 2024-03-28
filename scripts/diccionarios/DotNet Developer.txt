@@ -18,6 +18,20 @@ Intelligence Platform,
 Exprience,
 January,
 Industry,
+le,
+b,
+e,
+august,
+maharashtra,
+month,
+window,
+xp,
+amravati,
+january,
+b,
+month ,
+education,
+detail,
 Pandas,
 School,
 Deep Learning,
@@ -133,4 +147,24 @@ Development,
 esful,
 su,
 message,
+le,
+month
+exprience
 layer,
+pune
+maharashtra
+company
+detail
+role
+responsibility
+skill
+education
+management
+january
+hospital
+business
+school
+sr
+presentation
+education
+detail
