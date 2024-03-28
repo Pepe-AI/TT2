@@ -95,6 +95,7 @@ Used,
 years,
 monthsCompany,
 Details,
+skill
 nagpur,
 Maharashtra,
 responsibility,
