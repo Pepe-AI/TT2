@@ -95,16 +95,33 @@ description,
 worked,
 detail,
 role,
+pressure
 education detail,
 activity,
 responsibility,
+strong
+proficient
 issue,
 name,
 month,
 ltd
 technology
+problem
+solving
+known
+problem
+deliver
+best
+practice
+pressure
 job
 application
+problem
+solving
+known
+problem
+deliver
+pressure
 different
 maharashtra
 mumbai
@@ -113,5 +130,6 @@ science
 performance
 high availability
 m
+ability
 university
 support

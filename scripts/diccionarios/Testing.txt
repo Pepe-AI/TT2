@@ -72,9 +72,19 @@ pvt
 duration
 name
 aim
+pressure
 positive 
+strong
+proficient
 attitude
+problem
+solving
+known
+problem
+deliver
+pressure
 time attendance
+ability
 former
 check
 coil

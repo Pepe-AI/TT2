@@ -112,12 +112,21 @@ ess,
 expriece
 pvt,
 ltd,
+pressure
 month,
 experience,
 maharashtra,
 pune,
+proficient
 company,
 detail,
+problem
+solving
+known
+problem
+deliver
+pressure
+strong
 education
 detail,
 responsibility,
@@ -128,6 +137,7 @@ marketing,
 online sale,
 education,
 information
+ability
 technology,
 commerce
 exprience
